@@ -14,9 +14,9 @@ public class AuthTest {
         $("[href = '/login']") //Залогинтся в гитхабе
                 .click();
         $("[id='login_field']")
-                .sendKeys("arina-novikova2009@yandex.ru");
+                .sendKeys("rinatest");
         $("[id='password']")
-                .sendKeys("2403Ndaas2003");
+                .sendKeys("fhbyf12345678)");
         $(".js-sign-in-button")
                 .click();
         $(".Header")
