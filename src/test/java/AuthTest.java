@@ -1,3 +1,5 @@
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,10 +10,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+@Owner("arishkinnov")
 public class AuthTest {
 
     @BeforeEach
@@ -22,23 +24,23 @@ public class AuthTest {
     }
 
     @Test
+    @Story("Авторизация")
     @DisplayName("Авторизация с коректными данными:")
     public void shouldAuthorizeTest() {
 
-        $("[id='login_field']")
+        TestPage.mainPage.loginInput()
                 .sendKeys("rinatest");
-        $("[id='password']")
+        TestPage.mainPage.passwordInput()
                 .sendKeys("fhbyf12345678)");
-        $(".js-sign-in-button")
+        TestPage.mainPage.enterButton()
                 .click();
-        $(".Header")
+        TestPage.mainPage.header()
                 .shouldBe(visible);
-
-        $(".js-feature-preview-indicator-container") //переход в личный профиль
+        TestPage.mainPage.commandList() //переход в личный профиль
                 .click();
-        $(byText("Your profile"))
+        TestPage.mainPage.myProfileButton()
                 .click();
-        $(byText("Arina Novikova"))
+        TestPage.mainPage.myName()
                 .shouldHave(visible);
 
     }
@@ -50,13 +52,13 @@ public class AuthTest {
                                        String phone,
                                        String password) {
 
-        $("[id='login_field']")
+        TestPage.mainPage.loginInput()
                 .sendKeys(phone);
-        $("[id='password']")
+        TestPage.mainPage.passwordInput()
                 .sendKeys(password);
-        $(".js-sign-in-button")
+        TestPage.mainPage.enterButton()
                 .click();
-        $(".flash.flash-full.flash-error")
+        TestPage.mainPage.error()
                 .shouldBe(visible);
 
     }
