@@ -53,7 +53,7 @@ public class AuthTest {
         });
     }
 
-    @MethodSource("incorrectCredentials")
+    /*@MethodSource("incorrectCredentials")
     @ParameterizedTest(name = "{displayName} {0}")
     @Story("Авторизация негативный кейс")
     @DisplayName("Авторизация с некоректными данными:")
@@ -86,5 +86,5 @@ public class AuthTest {
                         "123456789Qq"
                 )
         );
-    }
+    }*/
 }
