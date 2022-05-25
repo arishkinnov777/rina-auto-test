@@ -1,3 +1,5 @@
+
+import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,9 +13,12 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+
+import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 @Owner("arishkinnov")
+@Feature("Авторизация")
 public class AuthTest {
 
     @BeforeEach
@@ -24,29 +29,33 @@ public class AuthTest {
     }
 
     @Test
-    @Story("Авторизация")
+    @Story("Авторизация позитивный кейс")
     @DisplayName("Авторизация с коректными данными:")
     public void shouldAuthorizeTest() {
-
+        step("Заполнить поля инпута и пароля и нажать кнопку авторизации", () -> {
         TestPage.mainPage.loginInput()
                 .sendKeys("rinatest");
         TestPage.mainPage.passwordInput()
                 .sendKeys("fhbyf12345678)");
         TestPage.mainPage.enterButton()
-                .click();
-        TestPage.mainPage.header()
-                .shouldBe(visible);
-        TestPage.mainPage.commandList() //переход в личный профиль
-                .click();
-        TestPage.mainPage.myProfileButton()
-                .click();
-        TestPage.mainPage.myName()
-                .shouldHave(visible);
+                .click();}
+        );
 
+        step("Проверка авторизации", () -> {
+            TestPage.mainPage.header()
+                    .shouldBe(visible);
+            TestPage.mainPage.commandList() //переход в личный профиль
+                    .click();
+            TestPage.mainPage.myProfileButton()
+                    .click();
+            TestPage.mainPage.myName()
+                    .shouldHave(visible);
+        });
     }
 
     @MethodSource("incorrectCredentials")
     @ParameterizedTest(name = "{displayName} {0}")
+    @Story("Авторизация негативный кейс")
     @DisplayName("Авторизация с некоректными данными:")
     public void shouldNotAuthorizeTest(String type,
                                        String phone,
