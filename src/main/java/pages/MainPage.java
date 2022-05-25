@@ -22,7 +22,7 @@ public class MainPage {
     }
 
     public SelenideElement header() {
-        return $(".Header");
+        return $(".Header.js-details-container").as("шапка страници с выбором разделов");
     }
 
     public SelenideElement commandList() {
