@@ -48,7 +48,7 @@ public class AuthTest {
             TestPage.mainPage.myProfileButton()// кликнуть на 'Your profile'
                     .click();
             TestPage.mainPage.myName()//
-                    .shouldHave(visible);
+                    .shouldBe(visible);
         });
     }
     /*@MethodSource("incorrectCredentials")
