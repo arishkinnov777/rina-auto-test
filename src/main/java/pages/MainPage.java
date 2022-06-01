@@ -22,7 +22,7 @@ public class MainPage {
     }
 
     public SelenideElement header() {
-        return $(".Header");
+        return $(".Header.js-details-container").as("шапка страници с выбором разделов");
     }
 
     public SelenideElement commandList() {
@@ -34,8 +34,9 @@ public class MainPage {
         return $(byText("Your profile")).
                 as("Кнопка входа в профиль");
     }
+
     public SelenideElement myName() {
-        return $(byText("Arina Novikova")).as("Имя пользователя");
+        return $(("[itemprop='name']")).as("Имя пользователя");
     }
     public SelenideElement error() {
         return $(".flash.flash-full.flash-error").as("ошибка");
