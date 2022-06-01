@@ -1,23 +1,33 @@
-
 import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 import static io.qameta.allure.Allure.step;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
+
 
 @Owner("arishkinnov")
 @Feature("Авторизация")
 public class AuthTest {
 
-   /* @BeforeEach
+    @BeforeEach
     public void setup(){
         open("https://github.com/");
         TestPage.mainPage.mainSignInButton()
                 .click();
-    }*/
+
+    }
 
     @Test
     @Story("Авторизация позитивный кейс")
@@ -51,7 +61,7 @@ public class AuthTest {
                     .shouldBe(visible);
         });
     }
-    /*@MethodSource("incorrectCredentials")
+    @MethodSource("incorrectCredentials")
     @ParameterizedTest(name = "{displayName} {0}")
     @Story("Авторизация негативный кейс")
     @DisplayName("Авторизация с некоректными данными:")
@@ -84,5 +94,5 @@ public class AuthTest {
                         "123456789Qq"
                 )
         );
-    }*/
+    }
 }
