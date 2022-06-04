@@ -29,7 +29,6 @@ public class AuthTest {
 
     }
 
-    @Test
     @Story("Авторизация позитивный кейс")
     @DisplayName("Авторизация с коректными данными:")
     public void shouldAuthorizeTest() {
