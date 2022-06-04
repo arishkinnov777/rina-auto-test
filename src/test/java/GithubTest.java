@@ -19,7 +19,7 @@ import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 @Owner("arishkinnov")
-@Feature("Ветки гита")
+@Feature("Проверка GitHub")
 
 public class GithubTest {
     @BeforeEach
@@ -28,6 +28,7 @@ public class GithubTest {
     }
 
     @Test
+    @Feature("Выбор ветки GitHub")
     @DisplayName("Выбор ветки")
     public void shouldCheckoutBrunchTest() {
         step("Клинуть на дропдаун и выбрать ветку ", () -> {
@@ -47,6 +48,7 @@ public class GithubTest {
     @MethodSource("findBy")
     @ParameterizedTest(name = "{0}")
     @DisplayName("Поиск по ")
+    @Feature("Поиск по релизам")
     public void shouldSearchByReleaseTest(String type,
                                           String value,
                                           Integer size) {
